@@ -12,7 +12,7 @@ route.use(require("express").json());
 route.get("/", (req, res) => {
   fs.readFile("./db/db.json", (err, data) => {
     const notes = JSON.parse(data);
-    console.log(notes);
+    res.json(notes);
   });
   //Respond with ALL notes in db
 });
