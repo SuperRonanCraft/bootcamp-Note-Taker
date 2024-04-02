@@ -3,24 +3,25 @@ const fs = require("fs");
 
 route.use(require("express").json());
 
-// route.use((req, res, next) => {
-//   console.log(`${req.method} request to`, req.url);
-//   next();
-// });
+function getNotes() {
+  return JSON.parse(fs.readFileSync("./db/db.json"));
+}
 
 // GET api/notes
 route.get("/", (req, res) => {
-  fs.readFile("./db/db.json", (err, data) => {
-    const notes = JSON.parse(data);
-    res.json(notes);
-  });
   //Respond with ALL notes in db
+  const notes = getNotes();
+  res.json(notes);
 });
 
+// POST api/notes
 route.post("/", (req, res) => {
-  console.log("Request", req.body);
   const { title, text } = req.body;
   if (title && text) {
+    const note = {
+      title,
+      text,
+    };
     res.status(201);
   } else {
     res.status(500);
