@@ -1,13 +1,11 @@
 const express = require("express");
-
-const api = require("./api/index");
+const routes = require("./routes/index");
 
 const port = process.env.PORT || 3001;
 const app = express();
 
 app.use(express.static("public"));
-
-app.use("/api", api);
+app.use("/", routes);
 
 //Start app
 app.listen(port, () => {
