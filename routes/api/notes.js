@@ -66,7 +66,6 @@ route.delete("/:id", (req, res) => {
           }
         }
         //Note found, deletes from json and saves to file
-        console.log("Removing", note);
         if (note) {
           console.log("Removing", note);
           notes.splice(notes.indexOf(note), 1);
